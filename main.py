@@ -25,7 +25,7 @@ while True:
         print(now_time)
         mixer.init()
 
-        mixer.music.load("bell/school_bell.mp3")
+        mixer.music.load("bell/school_bell_2.mp3")
 
         mixer.music.play()
 
