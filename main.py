@@ -38,7 +38,7 @@ end_time = ['08:40', '09:35', '10:30', '11:35', '12:25', '13:15', '14:10', '15:0
 username, password = "Bashirufaw", "7nfScyThnzbd$"
 all_teachers = get_all_teachers(username, password)
 
-week_days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Sunday"]
+week_days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 today = ""
 
 while True:
@@ -46,7 +46,7 @@ while True:
     now_time = now.strftime("%H:%M")
     day_name = now.strftime("%A")
 
-    if day_name != today:
+    if day_name != today and day_name in week_days:
         today = day_name
         lessons, latin_french, all_lessons_hours = get_9t_lessons(username, password)
 
