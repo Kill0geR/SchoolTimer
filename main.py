@@ -22,43 +22,52 @@ def talk(text):
     while mixer.music.get_busy():
         continue
 
-end_time = ['08:40', '09:35', '10:30', '11:35', '12:25', '13:15', '14:10', '15:00', '15:50', '16:40', '17:30', '18:20']
-all_time = list(set(end_time + ['07:50', '08:45', '09:40', '10:45', '11:35', '12:25', '13:20', '14:10', '14:50', '15:00', '15:50', '16:40', '17:30']))
-all_time_copy = all_time.copy()
+end_time = ['08:40', '09:35', '10:30', '11:35', '12:25', '13:42', '14:10', '15:00', '15:50', '16:40', '17:30', '18:20']
 
 username, password = "Bashirufaw", "7nfScyThnzbd$"
-lessons, latin_french = get_9t_lessons(username, password)
+lessons, latin_french, all_lessons_hours = get_9t_lessons(username, password)
 all_teachers = get_all_teachers(username, password)
+
+week_days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+today = datetime.datetime.now().strftime("%A")
 
 while True:
     now = datetime.datetime.now()
     now_time = now.strftime("%H:%M")
+    day_name = now.strftime("%A")
 
-    if now_time in all_time_copy:
-        print(now_time)
-        mixer.init()
+    if day_name != today:
+        today = day_name
+        lessons, latin_french, all_lessons_hours = get_9t_lessons(username, password)
 
-        mixer.music.load("bell/school_bell_2.mp3")
+    if day_name in week_days:
+        if now_time in all_lessons_hours:
+            print(now_time)
+            mixer.init()
 
-        mixer.music.play()
+            mixer.music.load("bell/school_bell_2.mp3")
 
-        while mixer.music.get_busy():
-            time.Clock().tick(10)
+            mixer.music.play()
 
-        if now_time in end_time:
-            get_next_time = end_time[end_time.index(now_time) + 1]
-            gender_teacher = all_teachers[lessons[get_next_time][0]][-1]
-            teacher_name = all_teachers[lessons[get_next_time][0]][0]
-            if get_next_time in latin_french:
-                first_lesson, second_lesson = lessons[get_next_time][2], latin_french[get_next_time][2]
-                talk(f"Die nächste Stunden sind {first_lesson} und {second_lesson}. "
-                     f"{first_lesson} ist mit {gender_teacher} {teacher_name} im Raum {lessons[get_next_time][1]}. "
-                     f"{second_lesson} ist mit {all_teachers[latin_french[get_next_time][0]][-1]} {all_teachers[latin_french[get_next_time][0]][0]} im Raum {latin_french[get_next_time][1]}, Viel Spaß")
-            else:
-                talk(f"Die nächste Stunde ist {lessons[get_next_time][2]} mit {gender_teacher} {teacher_name} im Raum {lessons[get_next_time][1]}, Viel Spaß")
-            # Das ist dann für die Ansage Lee
+            while mixer.music.get_busy():
+                time.Clock().tick(10)
 
-        all_time_copy.remove(now_time)
+            if now_time in end_time:
+                if now_time == all_lessons_hours[-1]:
+                    if day_name != "Friday": talk("Schulende. Ich wünsche euch noch einen schönen Tag")
+                    else: talk("Schulende. Ich wünsche euch noch ein schönes Wochenende")
 
-    if not all_time_copy:
-        all_time_copy = all_time.copy()
+                else:
+                    get_next_time = end_time[end_time.index(now_time) + 1]
+                    gender_teacher = all_teachers[lessons[get_next_time][0]][-1]
+                    teacher_name = all_teachers[lessons[get_next_time][0]][0]
+                    if get_next_time in latin_french:
+                        first_lesson, second_lesson = lessons[get_next_time][2], latin_french[get_next_time][2]
+                        talk(f"Die nächste Stunden sind {first_lesson} und {second_lesson}. "
+                             f"{first_lesson} ist mit {gender_teacher} {teacher_name} im Raum {lessons[get_next_time][1]}. "
+                             f"{second_lesson} ist mit {all_teachers[latin_french[get_next_time][0]][-1]} {all_teachers[latin_french[get_next_time][0]][0]} im Raum {latin_french[get_next_time][1]}, Viel Spaß")
+                    else:
+                        talk(f"Die nächste Stunde ist {lessons[get_next_time][2]} mit {gender_teacher} {teacher_name} im Raum {lessons[get_next_time][1]}, Viel Spaß")
+                    # Das ist dann für die Ansage Lee
+
+            all_lessons_hours.remove(now_time)
