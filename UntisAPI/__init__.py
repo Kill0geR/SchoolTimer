@@ -28,7 +28,7 @@ def get_9t_lessons(username, password):
     for klasse in klassen:
         cid = klasse.id
         clas = klassen.filter(id=cid)[0]
-        now = datetime(datetime.now().year, datetime.now().month, datetime.now().day)
+        now = datetime(datetime.now().year,9, 16)
         tt = s.timetable_extended(klasse=clas, start=now, end=now)
 
         for stunde in tt:
