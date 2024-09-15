@@ -1,12 +1,4 @@
-import pygame
+import UntisAPI
 
-pygame.mixer.init()
-
-pygame.mixer.music.load("bell/school_bell.mp3")
-
-pygame.mixer.music.play()
-
-while pygame.mixer.music.get_busy():
-    pygame.time.Clock().tick(10)
-
-print("fahsd")
+teachers = UntisAPI.get_all_teachers("Bashirufaw", "7nfScyThnzbd$")
+print(teachers)
