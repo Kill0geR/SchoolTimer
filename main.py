@@ -49,7 +49,6 @@ while True:
     if day_name != today:
         today = day_name
         lessons, latin_french, all_lessons_hours = get_9t_lessons(username, password)
-        print(lessons)
 
     if day_name in week_days and now_time in all_lessons_hours:
         print(now_time)
