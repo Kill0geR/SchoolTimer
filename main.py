@@ -36,11 +36,10 @@ def play_bell():
 end_time = ['08:40', '09:35', '10:30', '11:35', '12:25', '13:15', '14:10', '15:00', '15:50', '16:40', '17:30', '18:20']
 
 username, password = "Bashirufaw", "7nfScyThnzbd$"
-lessons, latin_french, all_lessons_hours = get_9t_lessons(username, password)
 all_teachers = get_all_teachers(username, password)
 
 week_days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Sunday"]
-today = datetime.datetime.now().strftime("%A")
+today = ""
 
 while True:
     now = datetime.datetime.now()
@@ -50,6 +49,7 @@ while True:
     if day_name != today:
         today = day_name
         lessons, latin_french, all_lessons_hours = get_9t_lessons(username, password)
+        print(lessons)
 
     if day_name in week_days and now_time in all_lessons_hours:
         print(now_time)

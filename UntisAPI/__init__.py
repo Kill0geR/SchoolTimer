@@ -44,8 +44,13 @@ def get_9t_lessons(username, password):
             except Exception as e:
                 print(e)
 
-    sorted_lessons = sorted(list(set(today_lessons)))
-    sorted_lessons[0] = "07:50"
+    try:
+        sorted_lessons = sorted(list(set(today_lessons)))
+        sorted_lessons[0] = "07:50"
+
+    except IndexError as Ie:
+        print(Ie)
+        pass
     return dict(sorted(all_lessons.items())), latin_french, sorted_lessons
 
 
