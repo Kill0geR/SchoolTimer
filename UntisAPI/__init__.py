@@ -28,7 +28,7 @@ def get_9t_lessons(username, password):
     for klasse in klassen:
         cid = klasse.id
         clas = klassen.filter(id=cid)[0]
-        now = datetime(datetime.now().year,9, 16)
+        now = datetime(datetime.now().year, datetime.now().month, datetime.now().day)
         tt = s.timetable_extended(klasse=clas, start=now, end=now)
 
         for stunde in tt:
@@ -38,12 +38,15 @@ def get_9t_lessons(username, password):
                     if stunde.end.strftime("%H:%M") not in all_lessons:
                         all_lessons[stunde.end.strftime("%H:%M")] = [stunde.teachers[0].name, stunde.rooms[0].name, stunde.subjects[0].long_name.title() if short_name not in long_names else long_names[short_name]]
                     else: latin_french[stunde.end.strftime("%H:%M")] = [stunde.teachers[0].name, stunde.rooms[0].name, stunde.subjects[0].long_name.title() if short_name not in long_names else long_names[short_name]]
+
                     today_lessons.append(stunde.start.strftime("%H:%M"))
                     today_lessons.append(stunde.end.strftime("%H:%M"))
             except Exception as e:
                 print(e)
 
-    return dict(sorted(all_lessons.items())), latin_french, sorted(list(set(today_lessons)))
+    sorted_lessons = sorted(list(set(today_lessons)))
+    sorted_lessons[0] = "07:50"
+    return dict(sorted(all_lessons.items())), latin_french, sorted_lessons
 
 
 def get_all_teachers(username, password):
