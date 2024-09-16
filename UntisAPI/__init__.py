@@ -60,5 +60,5 @@ def get_all_teachers(username, password):
 
     s = login(username, password)
     get_lst = ast.literal_eval(str(s.teachers()))
-    all_teachers = {each["name"]: [each['longName'], " ".join(teachers_gender[idx].split()[1:])] for idx, each in enumerate(get_lst) for k, v in each.items()}
+    all_teachers = {each["name"]: [each['longName'], " ".join(teachers_gender[idx if idx > 126 else 125].split()[1:])] for idx, each in enumerate(get_lst) for k, v in each.items()}
     return all_teachers
