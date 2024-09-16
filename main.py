@@ -54,7 +54,7 @@ while True:
         print(now_time)
         play_bell()
 
-        if now_time == all_lessons_hours[0]:
+        if now_time == "07:50":
             start_next_time = all_lessons_hours[all_lessons_hours.index(now_time) + 1]
             talk(f"Die erste Stunde beginnt jetzt. Ihr habt {lessons[start_next_time][2]} "
                  f"mit {all_teachers[lessons[start_next_time][0]][-1]} {all_teachers[lessons[start_next_time][0]][0]} im Raum {lessons[start_next_time][1]}, Viel Spaß")
