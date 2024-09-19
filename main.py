@@ -48,8 +48,7 @@ while True:
 
     if day_name != today and day_name in week_days:
         today = day_name
-        lessons, latin_french, all_lessons_hours = get_9t_lessons(username, password)
-        print(lessons)
+        lessons, latin_french, all_lessons_hours, in_our_class = get_9t_lessons(username, password)
 
     if day_name in week_days and now_time in all_lessons_hours:
         print(now_time)
@@ -66,16 +65,23 @@ while True:
                 else: talk("Schulende. Ich wünsche euch noch ein schönes Wochenende")
 
             else:
+                get_before_time = end_time[end_time.index(now_time)]
                 get_next_time = end_time[end_time.index(now_time) + 1]
-                gender_teacher = all_teachers[lessons[get_next_time][0]][-1]
-                teacher_name = all_teachers[lessons[get_next_time][0]][0]
-                if get_next_time in latin_french:
-                    first_lesson, second_lesson = lessons[get_next_time][2], latin_french[get_next_time][2]
-                    talk(f"Die nächsten Stunden sind {first_lesson} und {second_lesson}. "
-                         f"{first_lesson} ist mit {gender_teacher} {teacher_name} im Raum {lessons[get_next_time][1]}. "
-                         f"{second_lesson} ist mit {all_teachers[latin_french[get_next_time][0]][-1]} {all_teachers[latin_french[get_next_time][0]][0]} im Raum {latin_french[get_next_time][1]}, Viel Spaß")
-                else:
-                    talk(f"Die nächste Stunde ist {lessons[get_next_time][2]} mit {gender_teacher} {teacher_name} im Raum {lessons[get_next_time][1]}, Viel Spaß")
-                # Das ist dann für die Ansage Lee
+
+                if get_next_time in in_our_class:
+                    info_text = f"Übrigens ist in der nächsten Stunde die {' und '.join(in_our_class[get_next_time]) if len(in_our_class[get_next_time]) == 2 else in_our_class[get_next_time][0]} in eurer Klasse."
+                else: info_text = ""
+
+                if lessons[get_next_time][-1] != lessons[get_before_time][-1]:
+                    gender_teacher = all_teachers[lessons[get_next_time][0]][-1]
+                    teacher_name = all_teachers[lessons[get_next_time][0]][0]
+                    if get_next_time in latin_french:
+                        first_lesson, second_lesson = lessons[get_next_time][2], latin_french[get_next_time][2]
+                        talk(f"Die nächsten Stunden sind {first_lesson} und {second_lesson}. "
+                             f"{first_lesson} ist mit {gender_teacher} {teacher_name} im Raum {lessons[get_next_time][1]}. "
+                             f"{second_lesson} ist mit {all_teachers[latin_french[get_next_time][0]][-1]} {all_teachers[latin_french[get_next_time][0]][0]} im Raum {latin_french[get_next_time][1]}, Viel Spaß. {info_text}")
+                    else:
+                        talk(f"Die nächste Stunde ist {lessons[get_next_time][2]} mit {gender_teacher} {teacher_name} im Raum {lessons[get_next_time][1]}, Viel Spaß. {info_text}")
+                    # Das ist dann für die Ansage Lee
 
         all_lessons_hours.remove(now_time)

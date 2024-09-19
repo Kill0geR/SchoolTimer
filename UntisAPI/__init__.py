@@ -24,6 +24,7 @@ def get_9t_lessons(username, password):
     all_lessons = {}
     latin_french = {}
     today_lessons = []
+    in_our_class = {}
     long_names = {'GWB': 'Geographie', 'PUP': 'Philosophie', 'INW': 'Internet Working', 'BIU': 'Biologie', 'BSPK': 'Turnen', 'R': 'Religion'}
     for klasse in klassen:
         cid = klasse.id
@@ -41,8 +42,15 @@ def get_9t_lessons(username, password):
 
                     today_lessons.append(stunde.start.strftime("%H:%M"))
                     today_lessons.append(stunde.end.strftime("%H:%M"))
+
+                if stunde.rooms[0].name == "U35" and clas.name not in ["9t", "9s"]:
+                    if stunde.end.strftime("%H:%M") not in in_our_class:
+                        in_our_class[stunde.end.strftime("%H:%M")] = ["-".join(clas.name)]
+
+                    else: in_our_class[stunde.end.strftime("%H:%M")].append("-".join(clas.name))
+
             except Exception as e:
-                print(e)
+                pass
 
     try:
         sorted_lessons = sorted(list(set(today_lessons)))
@@ -51,7 +59,7 @@ def get_9t_lessons(username, password):
     except IndexError as Ie:
         print(Ie)
         pass
-    return dict(sorted(all_lessons.items())), latin_french, sorted_lessons
+    return dict(sorted(all_lessons.items())), latin_french, sorted_lessons, in_our_class
 
 
 def get_all_teachers(username, password):
@@ -60,5 +68,6 @@ def get_all_teachers(username, password):
 
     s = login(username, password)
     get_lst = ast.literal_eval(str(s.teachers()))
-    all_teachers = {each["name"]: [each['longName'], " ".join(teachers_gender[idx if idx > 126 else 125].split()[1:])] for idx, each in enumerate(get_lst) for k, v in each.items()}
+
+    all_teachers = {each["name"]: [each['longName'], " ".join(teachers_gender[idx if idx < 126 else 125].split()[1:])] for idx, each in enumerate(get_lst)}
     return all_teachers
