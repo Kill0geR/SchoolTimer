@@ -23,10 +23,14 @@ def talk(text):
         continue
 
 
-def play_bell():
+def play_bell(current_time):
     mixer.init()
 
-    mixer.music.load("bell/school_bell_2.mp3")
+    bell = "bell/school_bell_2.mp3"
+    if current_time in lessons:
+        if lessons[current_time][-1] == "Religion":
+            bell = "bell/church_bell.mp3"
+    mixer.music.load(bell)
 
     mixer.music.play()
 
@@ -52,7 +56,7 @@ while True:
 
     if day_name in week_days and now_time in all_lessons_hours:
         print(now_time)
-        play_bell()
+        play_bell(now_time)
 
         if now_time == "07:50":
             start_next_time = all_lessons_hours[all_lessons_hours.index(now_time) + 1]
