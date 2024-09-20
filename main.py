@@ -73,6 +73,10 @@ while True:
                 else: info_text = ""
 
                 if lessons[get_next_time][-1] != lessons[get_before_time][-1]:
+                    before_teacher_gender = " ".join(all_teachers[lessons[get_before_time][0]][-1].split()[1:]).replace("Herrn", "Herr").strip()
+                    before_teacher_name = all_teachers[lessons[get_before_time][0]][0]
+                    talk(f"Auf wiedersehen {before_teacher_gender} {before_teacher_name}")
+
                     gender_teacher = all_teachers[lessons[get_next_time][0]][-1]
                     teacher_name = all_teachers[lessons[get_next_time][0]][0]
                     if get_next_time in latin_french:
