@@ -1,126 +1,127 @@
-Marianne der Frau Professor
-Anna der Frau Professor
-Mirjam der Frau Professor
-Gerhard dem Herrn Professor
-Theresa der Frau Professor
-Michaela der Frau Professor
-Viktoria der Frau Professor
-Joachim dem Herrn Professor
-Aida der Frau Professor
-Ute der Frau Professor
-Christine der Frau Professor
-Steffen dem Herrn Professor
-Diana der Frau Professor
-Marcus dem Herrn Professor
-Gervin dem Herrn Professor
-Julia der Frau Professor
-Birgit der Frau Professor
-Andreas dem Herrn Professor
-Nives der Frau Professor
-Stefan dem Herrn Professor
-Mareike der Frau Professor
-Nina der Frau Professor
-Claudio dem Herrn Professor
-Extern dem Herrn Professor
-Gerhard dem Herrn Professor
-Verena der Frau Professor
-Karl dem Herrn Professor
-Benjamin dem Herrn Professor
-Thomas dem Herrn Professor
-Ernst dem Herrn Professor
-Julia der Frau Professor
-Ursula der Frau Professor
-Monika der Frau Professor
-Silke der Frau Professor
-Antonia der Frau Professor
-Alexander dem Herrn Professor
-Maria der Frau Professor
-Iris der Frau Professor
-Sebastian dem Herrn Professor
-Radka der Frau Professor
-Lena der Frau Professor
-Gabriel dem Herrn Professor
-Lucija der Frau Professor
-Sabine der Frau Professor
-Anna der Frau Professor
-Jakob dem Herrn Professor
-Peter dem Herrn Professor
-Daniela der Frau Professor
-Michael dem Herrn Professor
-Monika der Frau Professor
-Rene dem Herrn Professor
-Markus dem Herrn Professor
-Stephanie der Frau Professor
-Manuel dem Herrn Professor
-Edith der Frau Professor
-Laura der Frau Professor
-Ernst dem Herrn Professor
-Sofia der Frau Professor
-Nicole der Frau Professor
-Michaela der Frau Professor
-Sarah der Frau Professor
-Bettina der Frau Professor
-Sead dem Herrn Professor
-Gerhard dem Herrn Professor
-Ingrid der Frau Professor
-Christina der Frau Professor
-Martin dem Herrn Professor
-Robert dem Herrn Professor
-Catherina der Frau Professor
-Rebecca der Frau Professor
-Elisabeth der Frau Professor
-Michael dem Herrn Professor
-Florian dem Herrn Professor
-Christina der Frau Professor
-Eveline der Frau Professor
-Jutta der Frau Professor
-Benhard dem Herrn Professor
-Klara der Frau Professor
-Christina der Frau Professor
-Petra der Frau Professor
-Sabine der Frau Professor
-Leonie der Frau Professor
-Edgar dem Herrn Professor
-Christoph dem Herrn Professor
-Bernadette der Frau Professor
-Bernhard dem Herrn Professor
-Josef dem Herrn Professor
-Elisabeth der Frau Professor
-Ulrike der Frau Professor
-Georg dem Herrn Professor
-Sabine der Frau Professor
-Gernot dem Herrn Professor
-Michael dem Herrn Professor
-Rainer dem Herrn Professor
-Laura der Frau Professor
-Clara der Frau Professor
-Rebecca der Frau Professor
-Endrina der Frau Professor
-Endrina der Frau Professor
-Miomir dem Herrn Professor
-Florian dem Herrn Professor
-Roland dem Herrn Professor
-Barbara der Frau Professor
-Klaudia der Frau Professor
-Alexander dem Herrn Professor
-Alexander dem Herrn Professor
-Matthias dem Herrn Professor
-Manfred dem Herrn Professor
-Birgit der Frau Professor
-Elke der Frau Professor
-Elisabeth der Frau Professor
-Miriam der Frau Professor
-Lisa der Frau Professor
-Nicolas dem Herrn Professor
-Tobias dem Herrn Professor
-Tanja der Frau Professor
-Julian dem Herrn Professor
-Larissa der Frau Professor
-Bernhard dem Herrn Professor
-Ewald dem Herrn Professor
-Judith der Frau Professor
-Ulrike der Frau Professor
-Veronika der Frau Professor
-Richard dem Herrn Professor
-Christina der Frau Professor
-Sunita der Frau Professor
+Aic * Aichinger * der Frau Professor
+Ala * Aldrian * der Frau Professor
+Ald * Aldrian * der Frau Professor
+Aue * Auer * dem Herrn Professor
+Bar * Bartinger * der Frau Professor
+BauerMich * Bauer * der Frau Professor
+Bnh * Bauernhofer * der Frau Professor
+Bau * Baumung * dem Herrn Professor
+Beg * Begovic * der Frau Professor
+Ber * Berger * der Frau Professor
+Ben * Bernsteiner * der Frau Professor
+Boe * Böhm * dem Herrn Professor
+Brg * Brugger * der Frau Professor
+Bbm * Buchberger * dem Herrn Professor
+Buc * Buchmann * dem Herrn Professor
+Cos * Cossidente * der Frau Professor
+Den * Denk * der Frau Professor
+Der * Derler * dem Herrn Professor
+Dur * Duretek * der Frau Professor
+Eck * Eckhart * dem Herrn Professor
+Ein * Einfalt * der Frau Professor
+Est * Esterer * der Frau Professor
+Eus * Eustacchio * dem Herrn Professor
+Fei * Feichtinger * dem Herrn Professor
+Fin * Fink * der Frau Professor
+Fit * Fitzthum * dem Herrn Professor
+Gam * Gamsjäger * dem Herrn Professor
+Gra * Grader * dem Herrn Professor
+Gri * Grieshofer * dem Herrn Professor
+Gru * Grubelnig * der Frau Professor
+Gsi * Gschiel-Lampert * der Frau Professor
+Hal * Haller * der Frau Professor
+Ham * Hammer * der Frau Professor
+Har * Harjung * dem Herrn Professor
+Has * Haslinger * der Frau Professor
+Hei * Heinzel * dem Herrn Professor
+His * Hirschmugl-Säly * der Frau Professor
+Hoc * Hochwarter * der Frau Professor
+Hoe * Hödl * dem Herrn Professor
+Hoh * Hohmann * der Frau Professor
+Hul * Hüthmair * der Frau Professor
+Ill * Illmeier * dem Herrn Professor
+JakeljaLuc * Jakelja * der Frau Professor
+Juh * Juhart * der Frau Professor
+Kai * Kaiser * der Frau Professor
+Kaj * Kaltenböck * dem Herrn Professor
+Kap * Kapfer * dem Herrn Professor
+Ktn * Kastner * der Frau Professor
+Kat * Katter * dem Herrn Professor
+Keh * Kehl-Gangl * der Frau Professor
+Pow * Kehl-Powoden * dem Herrn Professor
+Ker * Kerschbaumer * dem Herrn Professor
+Bru * Klamminger-Brünner * der Frau Professor
+Kor * Köhler * dem Herrn Professor
+Kol * Koller * der Frau Professor
+Kge * Königseder * der Frau Professor
+Kop * Köppel * dem Herrn Professor
+Kos * Kotanidou * der Frau Professor
+Kra * Kraus * der Frau Professor
+Kre * Kreutler * der Frau Professor
+Kuc * Kuchar * der Frau Professor
+Kub * Kummer * der Frau Professor
+Kum * Kumro * dem Herrn Professor
+Leg * Lechner * dem Herrn Professor
+Lef * Lefebvre * der Frau Professor
+Loi * Loi * der Frau Professor
+Lur * Lurger * dem Herrn Professor
+Man * Mandl * dem Herrn Professor
+Mar * Martinschitz * der Frau Professor
+Mas * Masser * der Frau Professor
+May * Mayer * der Frau Professor
+Mor * Moretti * dem Herrn Professor
+Mos * Moser * dem Herrn Professor
+Moc * Moshammer * der Frau Professor
+Mue * Münzer-Kuhlmann * der Frau Professor
+Nai * Nais * der Frau Professor
+Obe * Obenaus * dem Herrn Professor
+Obr * Ober * der Frau Professor
+Obm * Obmann * der Frau Professor
+Okt * Oktabetz * der Frau Professor
+Pan * Panzitt * der Frau Professor
+Pau * Paulewicz * der Frau Professor
+Pee * Peer * dem Herrn Professor
+Pei * Peischler * dem Herrn Professor
+Pfi * Pfingstl * der Frau Professor
+Pih * Pichler * dem Herrn Professor
+Pla * Plasser * dem Herrn Professor
+Ple * Pleschberger * der Frau Professor
+Pon * Pongratz * der Frau Professor
+Poe * Pörtsch * dem Herrn Professor
+Pre * Prettner * der Frau Professor
+Pru * Prünster * dem Herrn Professor
+Rad * Radlingmayr * dem Herrn Professor
+Rau * Raunegger * der Frau Professor
+Reh * Reithofer * der Frau Professor
+Rie * Riebenbauer * der Frau Professor
+Rro * Rosales-Rodriguez * der Frau Professor
+Rro2 * Rosales-Rodriguez * der Frau Professor
+Sdo * Sando * dem Herrn Professor
+Scb * Schabereiter * dem Herrn Professor
+schaberl * Schaberl * dem Herrn Professor
+Sce * Scherübel * dem Herrn Professor
+SchloeglhoferBar * Schloeglhofer * der Frau Professor
+SchlofferKla * Schloffer * der Frau Professor
+Sca * Schrafl * dem Herrn Professor
+Scr * Schrei * dem Herrn Professor
+Scu * Schuck * dem Herrn Professor
+Sgl * Siegl * der Frau Professor
+Som * Somer * dem Herrn Professor
+Sta * Stadlober * der Frau Professor
+Std * Standeker * der Frau Professor
+Ste * Steger-Liebminger * der Frau Professor
+Stm * Steininger-Ollmann * der Frau Professor
+Sli * Stelzer * der Frau Professor
+Sto * Stojkovic * dem Herrn Professor
+Kbt * Tobias Kerschbaumer (Schauspiel) * dem Herrn Professor
+Trb * Traunbauer * der Frau Professor
+Wag * Wagner * dem Herrn Professor
+Was * Wassertheurer * der Frau Professor
+Wbg * Weinberger * dem Herrn Professor
+Wei * Weinhandel * dem Herrn Professor
+Wej * Weinzödl * der Frau Professor
+Wiu * Wiener * der Frau Professor
+Wiv * Windisch * der Frau Professor
+Win * Winkler * dem Herrn Professor
+Zmk * Zmek * der Frau Professor
+Zoe * Zöchmann * der Frau Professor

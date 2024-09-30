@@ -29,12 +29,12 @@ def get_9t_lessons(username, password):
     for klasse in klassen:
         cid = klasse.id
         clas = klassen.filter(id=cid)[0]
-        now = datetime(datetime.now().year, datetime.now().month, datetime.now().day)
+        now = datetime(datetime.now().year, 10, 3)
         tt = s.timetable_extended(klasse=clas, start=now, end=now)
 
         for stunde in tt:
             try:
-                if clas.name == "9t" and stunde.code != "cancelled":
+                if clas.name == "9t" and stunde.code != "cancelled" and stunde.subjects[0].name != "FRD":
                     short_name = stunde.subjects[0].name
                     if stunde.end.strftime("%H:%M") not in all_lessons:
                         all_lessons[stunde.end.strftime("%H:%M")] = [stunde.teachers[0].name, stunde.rooms[0].name, stunde.subjects[0].long_name.title() if short_name not in long_names else long_names[short_name]]
@@ -62,12 +62,9 @@ def get_9t_lessons(username, password):
     return dict(sorted(all_lessons.items())), latin_french, sorted_lessons, in_our_class
 
 
-def get_all_teachers(username, password):
-    with open("all_teacher_genders.txt", "r") as f:
+def get_all_teachers():
+    with open("all_teacher_genders.txt", "r", encoding="utf-8") as f:
         teachers_gender = f.readlines()
 
-    s = login(username, password)
-    get_lst = ast.literal_eval(str(s.teachers()))
-
-    all_teachers = {each["name"]: [each['longName'], " ".join(teachers_gender[idx if idx < 126 else 125].split()[1:])] for idx, each in enumerate(get_lst)}
+    all_teachers = {teacher.split("*")[0].strip(): [teacher.split("*")[1].strip(), teacher.split("*")[2].strip()] for teacher in teachers_gender}
     return all_teachers

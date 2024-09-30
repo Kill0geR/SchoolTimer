@@ -37,25 +37,26 @@ def play_bell(current_time):
     while mixer.music.get_busy():
         time.Clock().tick(10)
 
+
 end_time = ['08:40', '09:35', '10:30', '11:35', '12:25', '13:15', '14:10', '15:00', '15:50', '16:40', '17:30', '18:20']
 
 username, password = "Bashirufaw", "7nfScyThnzbd$"
-all_teachers = get_all_teachers(username, password)
+all_teachers = get_all_teachers()
 
 week_days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 today = ""
 
 while True:
     now = datetime.datetime.now()
-    now_time = now.strftime("%H:%M")
+    now_time = "10:30"
     day_name = now.strftime("%A")
 
     if day_name != today and day_name in week_days:
         today = day_name
         lessons, latin_french, all_lessons_hours, in_our_class = get_9t_lessons(username, password)
+        print(lessons)
 
     if day_name in week_days and now_time in all_lessons_hours:
-        print(now_time)
         play_bell(now_time)
 
         if now_time == "07:50":
@@ -72,14 +73,21 @@ while True:
                 get_before_time = end_time[end_time.index(now_time)]
                 get_next_time = end_time[end_time.index(now_time) + 1]
 
+                print(in_our_class)
                 if get_next_time in in_our_class:
                     info_text = f"Übrigens ist in der nächsten Stunde die {' und '.join(in_our_class[get_next_time]) if len(in_our_class[get_next_time]) == 2 else in_our_class[get_next_time][0]} in eurer Klasse."
                 else: info_text = ""
 
                 if lessons[get_next_time][-1] != lessons[get_before_time][-1]:
-                    before_teacher_gender = " ".join(all_teachers[lessons[get_before_time][0]][-1].split()[1:]).replace("Herrn", "Herr").strip()
-                    before_teacher_name = all_teachers[lessons[get_before_time][0]][0]
-                    talk(f"Auf wiedersehen {before_teacher_gender} {before_teacher_name}")
+                    if lessons[get_before_time][-1] == "Latein" and latin_french:
+                        before_teacher_gender_lat = " ".join(all_teachers[latin_french[get_before_time][0]][-1].split()[1:]).replace("Herrn", "Herr").strip()
+                        before_teacher_name_lat = all_teachers[latin_french[get_before_time][0]][0]
+                        talk(f"Auf wiedersehen {before_teacher_gender_lat} {before_teacher_name_lat}")
+
+                    else:
+                        before_teacher_gender = " ".join(all_teachers[lessons[get_before_time][0]][-1].split()[1:]).replace("Herrn", "Herr").strip()
+                        before_teacher_name = all_teachers[lessons[get_before_time][0]][0]
+                        talk(f"Auf wiedersehen {before_teacher_gender} {before_teacher_name}")
 
                     gender_teacher = all_teachers[lessons[get_next_time][0]][-1]
                     teacher_name = all_teachers[lessons[get_next_time][0]][0]
@@ -89,7 +97,13 @@ while True:
                              f"{first_lesson} ist mit {gender_teacher} {teacher_name} im Raum {lessons[get_next_time][1]}. "
                              f"{second_lesson} ist mit {all_teachers[latin_french[get_next_time][0]][-1]} {all_teachers[latin_french[get_next_time][0]][0]} im Raum {latin_french[get_next_time][1]}, Viel Spaß. {info_text}")
                     else:
-                        talk(f"Die nächste Stunde ist {lessons[get_next_time][2]} mit {gender_teacher} {teacher_name} im Raum {lessons[get_next_time][1]}, Viel Spaß. {info_text}")
+                        eth = False
+                        if lessons[get_next_time][-1] == "Ethik":
+                            talk(f"Schulende. Ich wünsche euch noch einen schönen Tag außer Ali Zakeri der hat nämlich {lessons[get_next_time][2]} mit {gender_teacher} {teacher_name} im Raum {lessons[get_next_time][1]}, Viel Spaß Ali Zakeri Hahahaha")
+                            eth = True
+
+                        if not eth:
+                            talk(f"Die nächste Stunde ist {lessons[get_next_time][2]} mit {gender_teacher} {teacher_name} im Raum {lessons[get_next_time][1]}, Viel Spaß. {info_text}")
                     # Das ist dann für die Ansage Lee
 
         all_lessons_hours.remove(now_time)
