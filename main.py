@@ -48,7 +48,7 @@ today = ""
 
 while True:
     now = datetime.datetime.now()
-    now_time = "10:30"
+    now_time = now.strftime("%H:%M")
     day_name = now.strftime("%A")
 
     if day_name != today and day_name in week_days:
@@ -73,7 +73,6 @@ while True:
                 get_before_time = end_time[end_time.index(now_time)]
                 get_next_time = end_time[end_time.index(now_time) + 1]
 
-                print(in_our_class)
                 if get_next_time in in_our_class:
                     info_text = f"Übrigens ist in der nächsten Stunde die {' und '.join(in_our_class[get_next_time]) if len(in_our_class[get_next_time]) == 2 else in_our_class[get_next_time][0]} in eurer Klasse."
                 else: info_text = ""
