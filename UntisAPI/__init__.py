@@ -25,6 +25,7 @@ def get_9t_lessons(username, password):
     latin_french = {}
     today_lessons = []
     in_our_class = {}
+    substitute_lessons = []
     long_names = {'GWB': 'Geographie', 'PUP': 'Philosophie', 'INW': 'Internet Working', 'BIU': 'Biologie', 'BSPK': 'Turnen', 'R': 'Religion'}
     for klasse in klassen:
         cid = klasse.id
@@ -35,6 +36,9 @@ def get_9t_lessons(username, password):
         for stunde in tt:
             try:
                 if clas.name == "9t" and stunde.code != "cancelled" and stunde.subjects[0].name != "FRD":
+                    if stunde.original_teachers:
+                        substitute_lessons.append(stunde.end.strftime("%H:%M"))
+
                     short_name = stunde.subjects[0].name
                     if stunde.end.strftime("%H:%M") not in all_lessons:
                         all_lessons[stunde.end.strftime("%H:%M")] = [stunde.teachers[0].name, stunde.rooms[0].name, stunde.subjects[0].long_name.title() if short_name not in long_names else long_names[short_name]]
@@ -59,7 +63,7 @@ def get_9t_lessons(username, password):
     except IndexError as Ie:
         print(Ie)
         pass
-    return dict(sorted(all_lessons.items())), latin_french, sorted_lessons, in_our_class
+    return dict(sorted(all_lessons.items())), latin_french, sorted_lessons, in_our_class, substitute_lessons
 
 
 def get_all_teachers():

@@ -53,7 +53,7 @@ while True:
 
     if day_name != today and day_name in week_days:
         today = day_name
-        lessons, latin_french, all_lessons_hours, in_our_class = get_9t_lessons(username, password)
+        lessons, latin_french, all_lessons_hours, in_our_class, substitution = get_9t_lessons(username, password)
         print(lessons)
 
     if day_name in week_days and now_time in all_lessons_hours:
@@ -66,6 +66,12 @@ while True:
 
         if now_time in end_time:
             if now_time == all_lessons_hours[-1]:
+                get_before_time = end_time[end_time.index(now_time)]
+                before_teacher_gender = " ".join(all_teachers[lessons[get_before_time][0]][-1].split()[1:]).replace(
+                    "Herrn", "Herr").strip()
+                before_teacher_name = all_teachers[lessons[get_before_time][0]][0]
+                talk(f"Auf wiedersehen {before_teacher_gender} {before_teacher_name}")
+
                 if day_name != "Friday": talk("Schulende. Ich wünsche euch noch einen schönen Tag")
                 else: talk("Schulende. Ich wünsche euch noch ein schönes Wochenende")
 
@@ -102,7 +108,9 @@ while True:
                             eth = True
 
                         if not eth:
-                            talk(f"Die nächste Stunde ist {lessons[get_next_time][2]} mit {gender_teacher} {teacher_name} im Raum {lessons[get_next_time][1]}, Viel Spaß. {info_text}")
+                            if get_next_time in substitution: sub_text = " wird suppliert und"
+                            else: sub_text = ""
+                            talk(f"Die nächste Stunde{sub_text} ist {lessons[get_next_time][2]} mit {gender_teacher} {teacher_name} im Raum {lessons[get_next_time][1]}, Viel Spaß. {info_text}")
                     # Das ist dann für die Ansage Lee
 
         all_lessons_hours.remove(now_time)
