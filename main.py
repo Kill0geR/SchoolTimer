@@ -25,6 +25,7 @@ def talk(text):
 
 def play_bell(current_time):
     mixer.init()
+    mixer.pre_init(44100, -16, 2, 4096)
 
     bell = "bell/school_bell_2.mp3"
     if current_time in lessons:
@@ -48,7 +49,7 @@ today = ""
 
 while True:
     now = datetime.datetime.now()
-    now_time = now.strftime("%H:%M")
+    now_time = "08:45"
     day_name = now.strftime("%A")
 
     if day_name != today and day_name in week_days:
