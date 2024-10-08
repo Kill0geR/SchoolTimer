@@ -35,7 +35,7 @@ def get_9t_lessons(username, password):
 
         for stunde in tt:
             try:
-                if clas.name == "9t" and stunde.code != "cancelled" and stunde.subjects[0].name != "FRD":
+                if clas.name == "9t" and stunde.code != "cancelled" and stunde.subjects[0].name not in ["FRD", "UBS"]:
                     if stunde.original_teachers:
                         substitute_lessons.append(stunde.end.strftime("%H:%M"))
 
