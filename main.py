@@ -56,6 +56,7 @@ while True:
         today = day_name
         lessons, latin_french, all_lessons_hours, in_our_class, substitution = get_9t_lessons(username, password)
         print(lessons)
+        print(in_our_class)
 
     if day_name in week_days and now_time in all_lessons_hours:
         play_bell(now_time)
@@ -85,15 +86,23 @@ while True:
                 else: info_text = ""
 
                 if lessons[get_next_time][-1] != lessons[get_before_time][-1]:
-                    if lessons[get_before_time][-1] == "Latein" and latin_french:
-                        before_teacher_gender_lat = " ".join(all_teachers[latin_french[get_before_time][0]][-1].split()[1:]).replace("Herrn", "Herr").strip()
-                        before_teacher_name_lat = all_teachers[latin_french[get_before_time][0]][0]
-                        talk(f"Auf wiedersehen {before_teacher_gender_lat} {before_teacher_name_lat}")
+                    if get_before_time not in in_our_class:
+                        if lessons[get_before_time][-1] == "Latein" and latin_french:
+                            before_teacher_gender_lat = " ".join(all_teachers[latin_french[get_before_time][0]][-1].split()[1:]).replace("Herrn", "Herr").strip()
+                            before_teacher_name_lat = all_teachers[latin_french[get_before_time][0]][0]
+                            talk(f"Auf wiedersehen {before_teacher_gender_lat} {before_teacher_name_lat}")
+
+                        else:
+                            before_teacher_gender = " ".join(all_teachers[lessons[get_before_time][0]][-1].split()[1:]).replace("Herrn", "Herr").strip()
+                            before_teacher_name = all_teachers[lessons[get_before_time][0]][0]
+                            talk(f"Auf wiedersehen {before_teacher_gender} {before_teacher_name}")
 
                     else:
-                        before_teacher_gender = " ".join(all_teachers[lessons[get_before_time][0]][-1].split()[1:]).replace("Herrn", "Herr").strip()
-                        before_teacher_name = all_teachers[lessons[get_before_time][0]][0]
-                        talk(f"Auf wiedersehen {before_teacher_gender} {before_teacher_name}")
+                        before_teacher_gender_lat = " ".join(
+                            all_teachers[in_our_class[get_before_time][-1]][-1].split()[1:]).replace("Herrn",
+                                                                                                    "Herr").strip()
+                        before_teacher_name_lat = all_teachers[in_our_class[get_before_time][-1]][0]
+                        talk(f"Auf wiedersehen {before_teacher_gender_lat} {before_teacher_name_lat}")
 
                     gender_teacher = all_teachers[lessons[get_next_time][0]][-1]
                     teacher_name = all_teachers[lessons[get_next_time][0]][0]

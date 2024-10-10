@@ -48,10 +48,11 @@ def get_9t_lessons(username, password):
                     today_lessons.append(stunde.end.strftime("%H:%M"))
 
                 if stunde.rooms[0].name == "U35" and clas.name not in ["9t", "9s"]:
-                    if stunde.end.strftime("%H:%M") not in in_our_class:
-                        in_our_class[stunde.end.strftime("%H:%M")] = ["-".join(clas.name)]
+                    if stunde.end.strftime("%H:%M") not in in_our_class: in_our_class[stunde.end.strftime("%H:%M")] = ["-".join(clas.name), stunde.teachers[0].name]
 
-                    else: in_our_class[stunde.end.strftime("%H:%M")].append("-".join(clas.name))
+                    else:
+                        in_our_class[stunde.end.strftime("%H:%M")].append("-".join(clas.name))
+                        in_our_class[stunde.end.strftime("%H:%M")].append(stunde.teachers[0].name)
 
             except Exception as e:
                 pass
