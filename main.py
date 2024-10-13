@@ -23,6 +23,28 @@ def talk(text):
         continue
 
 
+def bye_prof():
+    if get_before_time not in in_our_class:
+        if lessons[get_before_time][-1] == "Latein" and latin_french:
+            before_teacher_gender_lat = " ".join(
+                all_teachers[latin_french[get_before_time][0]][-1].split()[1:]).replace("Herrn", "Herr").strip()
+            before_teacher_name_lat = all_teachers[latin_french[get_before_time][0]][0]
+            talk(f"Auf wiedersehen {before_teacher_gender_lat} {before_teacher_name_lat}")
+
+        else:
+            before_teacher_gender = " ".join(all_teachers[lessons[get_before_time][0]][-1].split()[1:]).replace("Herrn",
+                                                                                                                "Herr").strip()
+            before_teacher_name = all_teachers[lessons[get_before_time][0]][0]
+            talk(f"Auf wiedersehen {before_teacher_gender} {before_teacher_name}")
+
+    else:
+        before_teacher_gender_lat = " ".join(
+            all_teachers[in_our_class[get_before_time][-1]][-1].split()[1:]).replace("Herrn",
+                                                                                     "Herr").strip()
+        before_teacher_name_lat = all_teachers[in_our_class[get_before_time][-1]][0]
+        talk(f"Auf wiedersehen {before_teacher_gender_lat} {before_teacher_name_lat}")
+
+
 def play_bell(current_time):
     mixer.init()
     mixer.pre_init(44100, -16, 2, 4096)
@@ -85,42 +107,30 @@ while True:
                     info_text = f"Übrigens ist in der nächsten Stunde die {' und '.join(in_our_class[get_next_time]) if len(in_our_class[get_next_time]) == 2 else in_our_class[get_next_time][0]} in eurer Klasse."
                 else: info_text = ""
 
-                if lessons[get_next_time][-1] != lessons[get_before_time][-1]:
-                    if get_before_time not in in_our_class:
-                        if lessons[get_before_time][-1] == "Latein" and latin_french:
-                            before_teacher_gender_lat = " ".join(all_teachers[latin_french[get_before_time][0]][-1].split()[1:]).replace("Herrn", "Herr").strip()
-                            before_teacher_name_lat = all_teachers[latin_french[get_before_time][0]][0]
-                            talk(f"Auf wiedersehen {before_teacher_gender_lat} {before_teacher_name_lat}")
+                try:
+                    if lessons[get_next_time][-1] != lessons[get_before_time][-1]:
+                        bye_prof()
 
+                        gender_teacher = all_teachers[lessons[get_next_time][0]][-1]
+                        teacher_name = all_teachers[lessons[get_next_time][0]][0]
+                        if get_next_time in latin_french:
+                            first_lesson, second_lesson = lessons[get_next_time][2], latin_french[get_next_time][2]
+                            talk(f"Die nächsten Stunden sind {first_lesson} und {second_lesson}. "
+                                 f"{first_lesson} ist mit {gender_teacher} {teacher_name} im Raum {lessons[get_next_time][1]}. "
+                                 f"{second_lesson} ist mit {all_teachers[latin_french[get_next_time][0]][-1]} {all_teachers[latin_french[get_next_time][0]][0]} im Raum {latin_french[get_next_time][1]}, Viel Spaß. {info_text}")
                         else:
-                            before_teacher_gender = " ".join(all_teachers[lessons[get_before_time][0]][-1].split()[1:]).replace("Herrn", "Herr").strip()
-                            before_teacher_name = all_teachers[lessons[get_before_time][0]][0]
-                            talk(f"Auf wiedersehen {before_teacher_gender} {before_teacher_name}")
+                            eth = False
+                            if lessons[get_next_time][-1] == "Ethik":
+                                talk(f"Schulende. Ich wünsche euch noch einen schönen Tag außer Ali Zakeri der hat nämlich {lessons[get_next_time][2]} mit {gender_teacher} {teacher_name} im Raum {lessons[get_next_time][1]}, Viel Spaß Ali Zakeri Hahahaha")
+                                eth = True
 
-                    else:
-                        before_teacher_gender_lat = " ".join(
-                            all_teachers[in_our_class[get_before_time][-1]][-1].split()[1:]).replace("Herrn",
-                                                                                                    "Herr").strip()
-                        before_teacher_name_lat = all_teachers[in_our_class[get_before_time][-1]][0]
-                        talk(f"Auf wiedersehen {before_teacher_gender_lat} {before_teacher_name_lat}")
-
-                    gender_teacher = all_teachers[lessons[get_next_time][0]][-1]
-                    teacher_name = all_teachers[lessons[get_next_time][0]][0]
-                    if get_next_time in latin_french:
-                        first_lesson, second_lesson = lessons[get_next_time][2], latin_french[get_next_time][2]
-                        talk(f"Die nächsten Stunden sind {first_lesson} und {second_lesson}. "
-                             f"{first_lesson} ist mit {gender_teacher} {teacher_name} im Raum {lessons[get_next_time][1]}. "
-                             f"{second_lesson} ist mit {all_teachers[latin_french[get_next_time][0]][-1]} {all_teachers[latin_french[get_next_time][0]][0]} im Raum {latin_french[get_next_time][1]}, Viel Spaß. {info_text}")
-                    else:
-                        eth = False
-                        if lessons[get_next_time][-1] == "Ethik":
-                            talk(f"Schulende. Ich wünsche euch noch einen schönen Tag außer Ali Zakeri der hat nämlich {lessons[get_next_time][2]} mit {gender_teacher} {teacher_name} im Raum {lessons[get_next_time][1]}, Viel Spaß Ali Zakeri Hahahaha")
-                            eth = True
-
-                        if not eth:
-                            if get_next_time in substitution: sub_text = " wird suppliert und"
-                            else: sub_text = ""
-                            talk(f"Die nächste Stunde{sub_text} ist {lessons[get_next_time][2]} mit {gender_teacher} {teacher_name} im Raum {lessons[get_next_time][1]}, Viel Spaß. {info_text}")
-                    # Das ist dann für die Ansage Lee
+                            if not eth:
+                                if get_next_time in substitution: sub_text = " wird suppliert und"
+                                else: sub_text = ""
+                                talk(f"Die nächste Stunde{sub_text} ist {lessons[get_next_time][2]} mit {gender_teacher} {teacher_name} im Raum {lessons[get_next_time][1]}, Viel Spaß. {info_text}")
+                        # Das ist dann für die Ansage Lee
+                except KeyError:
+                    bye_prof()
+                    talk("Die nächste Stunde ist eine Freistunde, viel Spaß. Übrigens nicht nach Hause gehen Ali und Abdul. Ich sehe alles. Oll eyes on you")
 
         all_lessons_hours.remove(now_time)
