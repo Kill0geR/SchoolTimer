@@ -1,21 +1,10 @@
-import time
-import UntisAPI
-import requests
+with open("school_times.txt", "r+") as file:
+    all_times = []
+    data = [line.replace("\n", "").split("Stunde")[1].split("-") for line in file.readlines()]
+    for each in data:
+        for every_time in each:
+            all_times.append(every_time.strip())
 
-teachers = UntisAPI.get_all_teachers()
+    print(all_times)
 
-
-def get_gender(name):
-    dict_gender = {"female": "der Frau Professor", "male": "dem Herrn Professor"}
-    url = f"https://api.genderize.io/?name={name}"
-    response = requests.get(url)
-
-    if response.status_code == 200:
-        data = response.json()
-        if data['gender'] is not None:
-            return dict_gender[data['gender']]
-
-
-with open("all_teacher_genders.txt", "r+") as f:
-    all_teacher_genders = [each.split()[2] for each in f.readlines()]
-    print(all_teacher_genders)
+print(list(set(["10", "10", "2"])))
