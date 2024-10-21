@@ -117,37 +117,40 @@ while True:
                  f"mit {all_teachers[lessons[start_next_time][0]][-1]} {all_teachers[lessons[start_next_time][0]][0]} im Raum {lessons[start_next_time][1]}, Viel Spaß")
 
         if now_time in end_time:
-            if now_time == all_lessons_hours[-1]:
-                get_before_time = end_time[end_time.index(now_time)]
-                before_teacher_gender = " ".join(all_teachers[lessons[get_before_time][0]][-1].split()[1:]).replace(
-                    "Herrn", "Herr").strip()
-                before_teacher_name = all_teachers[lessons[get_before_time][0]][0]
-                talk(f"Auf wiedersehen {before_teacher_gender} {before_teacher_name}")
+            try:
+                if now_time == all_lessons_hours[-1]:
+                    get_before_time = end_time[end_time.index(now_time)]
+                    before_teacher_gender = " ".join(all_teachers[lessons[get_before_time][0]][-1].split()[1:]).replace(
+                        "Herrn", "Herr").strip()
+                    before_teacher_name = all_teachers[lessons[get_before_time][0]][0]
+                    talk(f"Auf wiedersehen {before_teacher_gender} {before_teacher_name}")
 
-                if day_name != "Friday": talk("Schulende. Ich wünsche euch noch einen schönen Tag")
-                else: talk("Schulende. Ich wünsche euch noch ein schönes Wochenende")
+                    if day_name != "Friday": talk("Schulende. Ich wünsche euch noch einen schönen Tag")
+                    else: talk("Schulende. Ich wünsche euch noch ein schönes Wochenende")
 
-            else:
-                get_before_time = end_time[end_time.index(now_time)]
-                get_next_time = end_time[end_time.index(now_time) + 1]
+                else:
+                    get_before_time = end_time[end_time.index(now_time)]
+                    get_next_time = end_time[end_time.index(now_time) + 1]
 
-                if get_next_time in in_our_class:
-                    info_text = f"Übrigens ist in der nächsten Stunde die {' und '.join(in_our_class[get_next_time]) if len(in_our_class[get_next_time]) == 2 else in_our_class[get_next_time][0]} in eurer Klasse."
-                else: info_text = ""
+                    if get_next_time in in_our_class:
+                        info_text = f"Übrigens ist in der nächsten Stunde die {' und '.join(in_our_class[get_next_time]) if len(in_our_class[get_next_time]) == 2 else in_our_class[get_next_time][0]} in eurer Klasse."
+                    else: info_text = ""
 
-                try:
-                    if lessons[get_next_time][-1] != lessons[get_before_time][-1]:
-                        bye_prof()
+                    try:
+                        if lessons[get_next_time][-1] != lessons[get_before_time][-1]:
+                            bye_prof()
 
-                        next_lesson()
-                        # Das ist dann für die Ansage Lee
-                except KeyError:
-                    if get_next_time in all_lessons_hours:
-                        next_lesson()
+                            next_lesson()
+                            # Das ist dann für die Ansage Lee
+                    except KeyError:
+                        if get_next_time in all_lessons_hours:
+                            next_lesson()
 
-                    if now_time < all_lessons_hours[-1] and get_next_time not in all_lessons_hours:
-                        bye_prof()
-                        talk("Die nächste Stunde ist eine Freistunde, viel Spaß. Übrigens nicht nach Hause gehen Ali und Abdul. Ich sehe alles. Oll eyes on you")
+                        if now_time < all_lessons_hours[-1] and get_next_time not in all_lessons_hours:
+                            bye_prof()
+                            talk("Die nächste Stunde ist eine Freistunde, viel Spaß. Übrigens nicht nach Hause gehen Ali und Abdul. Ich sehe alles. Oll eyes on you")
+            except Exception as e:
+                pass
 
         try:
             all_times.remove(now_time)
