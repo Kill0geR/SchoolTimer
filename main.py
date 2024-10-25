@@ -49,6 +49,7 @@ def bye_prof():
 
 
 def play_bell(current_time):
+    print("bell is playing")
     mixer.init()
     mixer.pre_init(44100, -16, 2, 4096)
 
@@ -99,7 +100,7 @@ today = ""
 
 while True:
     now = datetime.datetime.now()
-    now_time = "09:40"
+    now_time = "07:50"
     day_name = now.strftime("%A")
 
     if day_name != today and day_name in week_days:
@@ -112,9 +113,12 @@ while True:
         play_bell(now_time)
 
         if now_time == "07:50" and "08:40" in all_lessons_hours:
+            if latin_french: first_lessons = latin_french
+            else: first_lessons = lessons
+
             start_next_time = all_lessons_hours[all_lessons_hours.index(now_time) + 1]
-            talk(f"Die erste Stunde beginnt jetzt. Ihr habt {lessons[start_next_time][2]} "
-                 f"mit {all_teachers[lessons[start_next_time][0]][-1]} {all_teachers[lessons[start_next_time][0]][0]} im Raum {lessons[start_next_time][1]}, Viel Spaß")
+            talk(f"Die erste Stunde beginnt jetzt. Ihr habt {first_lessons[start_next_time][2]} "
+                 f"mit {all_teachers[first_lessons[start_next_time][0]][-1]} {all_teachers[first_lessons[start_next_time][0]][0]} im Raum {first_lessons[start_next_time][1]}, Viel Spaß")
 
         if now_time in end_time:
             try:
