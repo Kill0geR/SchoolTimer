@@ -99,7 +99,7 @@ today = ""
 
 while True:
     now = datetime.datetime.now()
-    now_time = now.strftime("%H:%M")
+    now_time = "09:40"
     day_name = now.strftime("%A")
 
     if day_name != today and day_name in week_days:
@@ -150,7 +150,12 @@ while True:
                             bye_prof()
                             talk("Die nächste Stunde ist eine Freistunde, viel Spaß. Übrigens nicht nach Hause gehen Ali und Abdul. Ich sehe alles. Oll eyes on you")
             except Exception as e:
-                pass
+                print(e)
+                try:
+                    all_times.remove(now_time)
+                    all_lessons_hours.remove(now_time)
+                except ValueError:
+                    pass
 
         try:
             all_times.remove(now_time)
