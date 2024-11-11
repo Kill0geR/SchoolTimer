@@ -1,4 +1,2 @@
-data = ["hallo", "ich", "bin", "es"]
-
-for idx, value in enumerate(data):
-    print(idx, value)
+while (imported := __import__("random")) and (x := int(input("number 1-5: "))) != (rdint if "rdint" in locals() else (rdint := imported.randint(1, 5))) and print(x, "is wrong") is None: pass
+print(x, "is right")

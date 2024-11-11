@@ -19,9 +19,6 @@ def talk(text):
     mixer.music.load(audio_fp, "mp3")
     mixer.music.play()
 
-    while mixer.music.get_busy():
-        continue
-
 
 def bye_prof():
     try:
@@ -49,7 +46,7 @@ def bye_prof():
 
 
 def play_bell(current_time):
-    print("\nbell is playing\n")
+    print("playing bell")
     mixer.init()
     mixer.pre_init(44100, -16, 2, 4096)
 
@@ -60,9 +57,6 @@ def play_bell(current_time):
     mixer.music.load(bell)
 
     mixer.music.play()
-
-    while mixer.music.get_busy():
-        time.Clock().tick(10)
 
 
 def next_lesson():
@@ -100,7 +94,7 @@ today = ""
 
 while True:
     now = datetime.datetime.now()
-    now_time = "07:50"
+    now_time = "09:35"
     day_name = now.strftime("%A")
 
     if day_name != today and day_name in week_days:
@@ -112,4 +106,50 @@ while True:
     if day_name in week_days and (now_time in all_lessons_hours or now_time in all_times):
         play_bell(now_time)
 
+        if now_time == "07:50" and "08:40" in all_lessons_hours:
+            start_next_time = all_lessons_hours[all_lessons_hours.index(now_time) + 1]
+            talk(f"Die erste Stunde beginnt jetzt. Ihr habt {lessons[start_next_time][2]} "
+                 f"mit {all_teachers[lessons[start_next_time][0]][-1]} {all_teachers[lessons[start_next_time][0]][0]} im Raum {lessons[start_next_time][1]}, Viel Spaß")
 
+        if now_time in end_time:
+            try:
+                if now_time in all_lessons_hours and lessons[now_time][0] != "Kra":
+                    if now_time == all_lessons_hours[-1]:
+                        get_before_time = end_time[end_time.index(now_time)]
+                        before_teacher_gender = " ".join(all_teachers[lessons[get_before_time][0]][-1].split()[1:]).replace(
+                            "Herrn", "Herr").strip()
+                        before_teacher_name = all_teachers[lessons[get_before_time][0]][0]
+                        talk(f"Auf wiedersehen {before_teacher_gender} {before_teacher_name}")
+
+                        if day_name != "Friday": talk("Schulende. Ich wünsche euch noch einen schönen Tag")
+                        else: talk("Schulende. Ich wünsche euch noch ein schönes Wochenende")
+
+                    else:
+                        get_before_time = end_time[end_time.index(now_time)]
+                        get_next_time = end_time[end_time.index(now_time) + 1]
+
+                        if get_next_time in in_our_class:
+                            info_text = f"Übrigens ist in der nächsten Stunde die {' und '.join(in_our_class[get_next_time]) if len(in_our_class[get_next_time]) == 2 else in_our_class[get_next_time][0]} in eurer Klasse."
+                        else: info_text = ""
+
+                        try:
+                            if lessons[get_next_time][-1] != lessons[get_before_time][-1]:
+                                bye_prof()
+
+                                next_lesson()
+                                # Das ist dann für die Ansage Lee
+                        except KeyError:
+                            if get_next_time in all_lessons_hours:
+                                next_lesson()
+
+                            if now_time < all_lessons_hours[-1] and get_next_time not in all_lessons_hours:
+                                bye_prof()
+                                talk("Die nächste Stunde ist eine Freistunde, viel Spaß. Übrigens nicht nach Hause gehen Ali und Abdul. Ich sehe alles. Oll eyes on you")
+            except Exception as e:
+                pass
+
+        try:
+            all_times.remove(now_time)
+            all_lessons_hours.remove(now_time)
+        except ValueError:
+            pass
