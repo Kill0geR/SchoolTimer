@@ -94,7 +94,7 @@ today = ""
 
 while True:
     now = datetime.datetime.now()
-    now_time = "09:35"
+    now_time = now.strftime("%H:%M")
     day_name = now.strftime("%A")
 
     if day_name != today and day_name in week_days:
