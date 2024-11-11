@@ -19,6 +19,9 @@ def talk(text):
     mixer.music.load(audio_fp, "mp3")
     mixer.music.play()
 
+    while mixer.music.get_busy():
+        pass
+
 
 def bye_prof():
     try:
@@ -57,6 +60,9 @@ def play_bell(current_time):
     mixer.music.load(bell)
 
     mixer.music.play()
+
+    while mixer.music.get_busy():
+        pass
 
 
 def next_lesson():
