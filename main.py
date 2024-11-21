@@ -49,7 +49,7 @@ def bye_prof():
 
 
 def play_bell(current_time):
-    print("playing bell")
+    print("playing bell", end_time)
     mixer.init()
     mixer.pre_init(44100, -16, 2, 4096)
 
@@ -92,6 +92,8 @@ def next_lesson():
 end_time = ['08:40', '09:35', '10:30', '11:35', '12:25', '13:15', '14:10', '15:00', '15:50', '16:40', '17:30', '18:20']
 all_times = list(set(['07:50', '08:40', '08:45', '09:35', '09:40', '10:30', '10:45', '11:35', '11:35', '12:25', '12:25', '13:15', '13:20', '14:10', '14:10', '15:00']))
 
+end_time_copy, all_times_copy = end_time.copy(), all_times.copy()
+
 username, password = "Bashirufaw", "7nfScyThnzbd$"
 all_teachers = get_all_teachers()
 
@@ -108,6 +110,9 @@ while True:
         lessons, latin_french, all_lessons_hours, in_our_class, substitution = get_9t_lessons(username, password)
         print(lessons)
         print(in_our_class)
+
+    if not end_time: end_time = end_time_copy
+    elif not all_times: all_times = all_times_copy
 
     if day_name in week_days and (now_time in all_lessons_hours or now_time in all_times):
         play_bell(now_time)
