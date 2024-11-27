@@ -112,7 +112,7 @@ while True:
 
     if day_name != today and day_name in week_days:
         today = day_name
-        lessons, latin_french, all_lessons_hours, in_our_class, substitution = get_9t_lessons(username, password)
+        lessons, latin_french, all_lessons_hours, in_our_class, substitution = get_9t_lessons(username, password, all_teachers)
         print(lessons)
         print(in_our_class)
 

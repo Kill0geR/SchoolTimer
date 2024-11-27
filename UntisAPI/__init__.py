@@ -18,7 +18,7 @@ def login(username, password):
         raise Exception('Du musst Webuntis herunterladen du Hund\nAlso `pip install webuntis`')
 
 
-def get_9t_lessons(username, password):
+def get_9t_lessons(username, password, teacher_genders):
     s = login(username, password)
     klassen = s.klassen()
     all_lessons = {}
@@ -48,11 +48,14 @@ def get_9t_lessons(username, password):
                     today_lessons.append(stunde.end.strftime("%H:%M"))
 
                 if stunde.rooms[0].name == "U35" and clas.name not in ["9t", "9s"]:
-                    if stunde.end.strftime("%H:%M") not in in_our_class: in_our_class[stunde.end.strftime("%H:%M")] = ["-".join(clas.name), stunde.teachers[0].name]
+                    gender_lst = teacher_genders[stunde.teachers[0].name.title()]
+
+                    gender_of_teacher = f'{gender_lst[-1].replace("der", "die").replace("dem", "der")} {gender_lst[0]}'
+                    if stunde.end.strftime("%H:%M") not in in_our_class: in_our_class[stunde.end.strftime("%H:%M")] = ["-".join(clas.name), gender_of_teacher]
 
                     else:
                         in_our_class[stunde.end.strftime("%H:%M")].append("-".join(clas.name))
-                        in_our_class[stunde.end.strftime("%H:%M")].append(stunde.teachers[0].name)
+                        in_our_class[stunde.end.strftime("%H:%M")].append(gender_of_teacher)
 
             except Exception as e:
                 pass
