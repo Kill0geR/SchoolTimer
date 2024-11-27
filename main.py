@@ -47,13 +47,10 @@ def bye_prof():
 
 
 def play_bell(current_time):
-    global bell_playing
-    if bell_playing:
+    if current_time in current_time_lst:
         return
 
-    bell_playing = True
     print("playing bell", all_times, current_time)
-    mixer.init()
     mixer.pre_init(44100, -16, 2, 4096)
 
     bell = "bell/school_bell_2.mp3"
@@ -61,14 +58,14 @@ def play_bell(current_time):
         if lessons[current_time][-1] == "Religion":
             bell = "bell/church_bell.mp3"
 
-    mixer.music.load(bell)  # Stelle sicher, dass die Datei vorab geladen wird
+    mixer.music.load(bell)
     mixer.music.play()
 
     while mixer.music.get_busy():
         tm.sleep(0.1)
 
-    bell_playing = False  # Flag zurücksetzen
-
+    if current_time_lst: current_time_lst[0] = current_time
+    else: current_time_lst.append(current_time)
 
 
 def next_lesson():
@@ -100,6 +97,7 @@ end_time = ['08:40', '09:35', '10:30', '11:35', '12:25', '13:15', '14:10', '15:0
 all_times = list(set(['07:50', '08:40', '08:45', '09:35', '09:40', '10:30', '10:45', '11:35', '11:35', '12:25', '12:25', '13:15', '13:20', '14:10', '14:10', '15:00']))
 bell_playing = False
 end_time_copy, all_times_copy = end_time.copy(), all_times.copy()
+current_time_lst = []
 
 username, password = "Bashirufaw", "7nfScyThnzbd$"
 all_teachers = get_all_teachers()
