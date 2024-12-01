@@ -7,6 +7,10 @@ import time as tm
 
 
 def talk(text):
+    if text in current_text:
+        print("Ist bei der ANSPRACHE passiert")
+        return
+
     print(text)
     tts = gTTS(text=text, lang='de')
     audio_fp = BytesIO()
@@ -18,7 +22,10 @@ def talk(text):
     mixer.music.play()
 
     while mixer.music.get_busy():
-        pass
+        tm.sleep(0.1)
+
+    if current_text: current_text[0] = text
+    else: current_text.append(text)
 
 
 def bye_prof():
@@ -48,6 +55,7 @@ def bye_prof():
 
 def play_bell(current_time):
     if current_time in current_time_lst:
+        print("Ist bei der GLOCKE passiert")
         return
 
     print("playing bell", all_times, current_time)
@@ -98,6 +106,7 @@ all_times = list(set(['07:50', '08:40', '08:45', '09:35', '09:40', '10:30', '10:
 bell_playing = False
 end_time_copy, all_times_copy = end_time.copy(), all_times.copy()
 current_time_lst = []
+current_text = []
 
 username, password = "Bashirufaw", "7nfScyThnzbd$"
 all_teachers = get_all_teachers()
