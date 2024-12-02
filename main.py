@@ -116,7 +116,7 @@ today = ""
 
 while True:
     now = datetime.datetime.now()
-    now_time = now.strftime("%H:%M")
+    now_time = "08:40"
     day_name = now.strftime("%A")
 
     if day_name != today and day_name in week_days:
@@ -168,7 +168,7 @@ while True:
 
                             if now_time < all_lessons_hours[-1] and get_next_time not in all_lessons_hours:
                                 bye_prof()
-                                talk("Die nächste Stunde ist eine Freistunde, viel Spaß. Übrigens nicht nach Hause gehen Ali und Abdul. Ich sehe alles. Oll eyes on you")
+                                talk("Die nächste Stunde ist eine Freistunde, viel Spaß.")
             except Exception as e:
                 pass
 
