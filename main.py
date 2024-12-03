@@ -9,6 +9,7 @@ import time as tm
 def talk(text):
     if text in current_text:
         print("Ist bei der ANSPRACHE passiert")
+        tm.sleep(65)
         return
 
     print(text)
@@ -56,6 +57,7 @@ def bye_prof():
 def play_bell(current_time):
     if current_time in current_time_lst:
         print("Ist bei der GLOCKE passiert")
+        tm.sleep(65)
         return
 
     print("playing bell", all_times, current_time)
@@ -131,9 +133,12 @@ while True:
         play_bell(now_time)
 
         if now_time == "07:50" and "08:40" in all_lessons_hours:
-            start_next_time = all_lessons_hours[all_lessons_hours.index(now_time) + 1]
-            talk(f"Die erste Stunde beginnt jetzt. Ihr habt {lessons[start_next_time][2]} "
-                 f"mit {all_teachers[lessons[start_next_time][0]][-1]} {all_teachers[lessons[start_next_time][0]][0]} im Raum {lessons[start_next_time][1]}, Viel Spaß")
+            try:
+                start_next_time = all_lessons_hours[all_lessons_hours.index(now_time) + 1]
+                talk(f"Die erste Stunde beginnt jetzt. Ihr habt {lessons[start_next_time][2]} "
+                     f"mit {all_teachers[lessons[start_next_time][0]][-1]} {all_teachers[lessons[start_next_time][0]][0]} im Raum {lessons[start_next_time][1]}, Viel Spaß")
+            except Exception:
+                pass
 
         if now_time in end_time:
             try:
