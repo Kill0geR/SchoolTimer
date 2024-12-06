@@ -118,7 +118,7 @@ today = ""
 
 while True:
     now = datetime.datetime.now()
-    now_time = "08:40"
+    now_time = now.strftime("%H:%M")
     day_name = now.strftime("%A")
 
     if day_name != today and day_name in week_days:
@@ -135,8 +135,14 @@ while True:
         if now_time == "07:50" and "08:40" in all_lessons_hours:
             try:
                 start_next_time = all_lessons_hours[all_lessons_hours.index(now_time) + 1]
-                talk(f"Die erste Stunde beginnt jetzt. Ihr habt {lessons[start_next_time][2]} "
-                     f"mit {all_teachers[lessons[start_next_time][0]][-1]} {all_teachers[lessons[start_next_time][0]][0]} im Raum {lessons[start_next_time][1]}, Viel Spaß")
+                if latin_french:
+                    if "U35" in latin_french[start_next_time]:
+                        talk(f"Die erste Stunde beginnt jetzt. Ihr habt {latin_french[start_next_time][2]} "
+                             f"mit {all_teachers[latin_french[start_next_time][0]][-1]} {all_teachers[latin_french[start_next_time][0]][0]} im Raum {latin_french[start_next_time][1]}, Viel Spaß")
+
+                else:
+                    talk(f"Die erste Stunde beginnt jetzt. Ihr habt {lessons[start_next_time][2]} "
+                         f"mit {all_teachers[lessons[start_next_time][0]][-1]} {all_teachers[lessons[start_next_time][0]][0]} im Raum {lessons[start_next_time][1]}, Viel Spaß")
             except Exception:
                 pass
 
